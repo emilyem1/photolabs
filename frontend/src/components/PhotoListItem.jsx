@@ -15,7 +15,21 @@ const sampleDataForPhotoListItem = {
 };
 
 const PhotoListItem = () => {
-  /* Insert React */
+  return (
+  <div className="PhotoItem">
+    <img src={sampleDataForPhotoListItem.imageSource} alt="Photo" />
+    <div className="UserInfo">
+      <img src={sampleDataForPhotoListItem.profile} alt="Profile" />
+      <div className="UserDetails">
+        <p>{sampleDataForPhotoListItem.username}</p>
+        <p>
+          {sampleDataForPhotoListItem.location.city},{" "}
+          {sampleDataForPhotoListItem.location.country}
+        </p>
+      </div>
+    </div>
+  </div>
+  );
 };
 
 export default PhotoListItem;
