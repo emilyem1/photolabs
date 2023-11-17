@@ -3,24 +3,24 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoListItem = (props) => {
-  const { location, imageSource, username, profile } = props; // Destructure
+  const { data } = props;
   return (
   <div className="photo-list__item">
     <PhotoFavButton />
-    <img src={imageSource} alt="Photo" className="photo-list__image" />
+    <img src={data.urls.regular} alt="Photo" className="photo-list__image" />
 
     <div className="photo-list__user-details">
 
-      <img src={profile} alt="Profile" className="photo-list__user-profile" />
+      <img src={data.user.profile} alt="Profile" className="photo-list__user-profile" />
 
       <div className="photo-list__user-info">
         <div className="photo-list__user-username">
-          <p>{username}</p>
+          <p>{data.user.name}</p>
         </div>
         <div className="photo-list__user-location">
           <p>
-            {location.city},{" "}
-            {location.country}
+            {data.location.city},{" "}
+            {data.location.country}
           </p>
         </div>
       </div>
