@@ -10,7 +10,7 @@ const HomeRoute = (props) => {
   const [favourite, setFavourite] = useState([]);
   return (
     <div className="home-route">
-      <TopNavigationBar topics={topics} />
+      <TopNavigationBar topics={topics} isFavPhotoExist={favourite.length > 0}/>
       <PhotoList 
         photos={photos}
         favourite={favourite}
