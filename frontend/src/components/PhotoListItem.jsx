@@ -5,8 +5,16 @@ import PhotoFavButton from 'components/PhotoFavButton';
 const PhotoListItem = (props) => {
   const { data, favourite, setFavourite } = props;
   const addFavourite = () => {
-    setFavourite([...favourite, data.id])
-    console.log(`I'm working, I'm just one behind: ${favourite}`)
+    const isExisting = favourite.includes(data.id);
+    if (isExisting) {
+      // If data.id exists, remove it from the array
+      const updatedFavourites = favourite.filter((id) => id !== data.id);
+      setFavourite(updatedFavourites);
+      console.log(`Removed ${data.id} from favourites: ${updatedFavourites}`);
+    } else {
+      setFavourite([...favourite, data.id])
+      console.log(`Added ${data.id} to favourites: ${[...favourite, data.id]}`);
+    }
   } 
   return (
   <div className="photo-list__item">
