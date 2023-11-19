@@ -3,7 +3,7 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoListItem = (props) => {
-  const { data, favourite, setFavourite } = props;
+  const { data, favourite, setFavourite, toggleModal } = props;
   const addFavourite = () => {
     const isExisting = favourite.includes(data.id);
     if (isExisting) {
@@ -17,7 +17,7 @@ const PhotoListItem = (props) => {
     }
   } 
   return (
-  <div className="photo-list__item">
+  <div className="photo-list__item" onClick={toggleModal}>
     <PhotoFavButton addFavourite={addFavourite} />
     <img src={data.urls.regular} alt="Photo" className="photo-list__image" />
 
