@@ -2,14 +2,39 @@ import React from 'react';
 
 import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
+import PhotoFavButton from "components/PhotoFavButton";
+import PhotoList from 'components/PhotoList';
 
 const PhotoDetailsModal = (props) => {
-  const { toggleModal } = props;
+  const { toggleModal, selectedPhoto } = props;
   return (
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button" onClick={toggleModal}>
         <img src={closeSymbol} alt="close symbol" />
       </button>
+      {/* Photo Details */}
+      <div className="photo-details-modal__images">
+        <PhotoFavButton />
+        <img src={selectedPhoto.urls.full} alt="Larger version of photo" className="photo-details-modal__image" />
+        {/* Photographer Details */}
+        <div className='photo-details-modal__photographer-details'>
+          <img src={selectedPhoto.user.profile} alt="Profile picture" className="photo-details-modal__photographer-profile" />
+          <div className="photo-details-modal__photographer-info">
+            <div className="photo-details-modal__photographer-name">
+              <p>{selectedPhoto.user.name}</p>
+            </div>
+            <div className="photo-details-modal__photographer-location">
+              <p>
+                {selectedPhoto.location.city}, {selectedPhoto.location.country}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Similar Photos */}
+      <div className="photo-details-modal__images">
+        <h2 className="photo-details-modal__header">Similar Photos</h2>
+      </div>
     </div>
   )
 };
