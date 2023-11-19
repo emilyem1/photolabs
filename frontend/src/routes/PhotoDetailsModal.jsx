@@ -35,6 +35,8 @@ const PhotoDetailsModal = (props) => {
       <div className="photo-details-modal__images">
         <h2 className="photo-details-modal__header">Similar Photos</h2>
       </div>
+      {/* Replace the photos object in PhotoList with just the similar_photos. Use Object.values to iterate over the object's properties */}
+      <PhotoList photos={Object.values(selectedPhoto.similar_photos)} />
     </div>
   )
 };
