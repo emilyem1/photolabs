@@ -6,7 +6,7 @@ import PhotoList from '../components/PhotoList';
 import TopNavigationBar from '../components/TopNavigationBar';
 
 const HomeRoute = (props) => {
-  const { topics, photos, toggleModal} = props;
+  const { topics, photos, toggleModal, setSelectedPhoto } = props;
   const [favourite, setFavourite] = useState([]);
   return (
     <div className="home-route">
@@ -16,6 +16,7 @@ const HomeRoute = (props) => {
         favourite={favourite}
         setFavourite={setFavourite}
         toggleModal={toggleModal}
+        setSelectedPhoto={setSelectedPhoto}
       />
     </div>
   );
