@@ -3,15 +3,15 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoListItem = (props) => {
-  const { data, addFavourite, toggleModal, setSelectedPhoto } = props;
+  const { data, updateToFavPhotoIds, onPhotoSelect } = props;
   const handleModalClick = () => {
-    toggleModal();
+    onPhotoSelect(data);
     console.log('Clicked photo details:', data);
-    setSelectedPhoto(data)
-  } 
+  }
+
   return (
   <div className="photo-list__item">
-    <PhotoFavButton addFavourite={() => addFavourite(data)} />
+    <PhotoFavButton updateToFavPhotoIds={updateToFavPhotoIds} data={data} />
     <img src={data.urls.regular} alt="Photo" className="photo-list__image" onClick={handleModalClick} />
 
     <div className="photo-list__user-details">
