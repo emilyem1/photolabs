@@ -20,13 +20,10 @@ const PhotoListItem = (props) => {
 
       <div className="photo-list__user-info">
         <div className="photo-list__user-username">
-          <p>{data.user.name}</p>
+          {data.user.name}
         </div>
         <div className="photo-list__user-location">
-          <p>
-            {data.location.city},{" "}
-            {data.location.country}
-          </p>
+          {data.location.city}, {data.location.country}
         </div>
       </div>
     </div>
