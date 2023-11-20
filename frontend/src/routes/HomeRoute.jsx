@@ -5,15 +5,14 @@ import PhotoList from '../components/PhotoList';
 import TopNavigationBar from '../components/TopNavigationBar';
 
 const HomeRoute = (props) => {
-  const { topics, photos, toggleModal, setSelectedPhoto, favourite, addFavourite } = props;
+  const { state, onPhotoSelect, onLoadTopic, updateToFavPhotoIds, photos } = props;
   return (
     <div className="home-route">
-      <TopNavigationBar topics={topics} isFavPhotoExist={favourite.length > 0}/>
+      <TopNavigationBar onLoadTopic={onLoadTopic} state={state} isFavPhotoExist={state.favourite.length > 0}/>
       <PhotoList 
+        onPhotoSelect={onPhotoSelect}
+        updateToFavPhotoIds={updateToFavPhotoIds}
         photos={photos}
-        toggleModal={toggleModal}
-        setSelectedPhoto={setSelectedPhoto}
-        addFavourite={addFavourite} 
       />
     </div>
   );
