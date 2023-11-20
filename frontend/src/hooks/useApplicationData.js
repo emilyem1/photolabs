@@ -22,7 +22,12 @@ const useApplicationData = () => {
 
   // Function used to add favourite photo
   const updateToFavPhotoIds = (photoId) => {
-    // logic here
+    setState((currentState) => ({
+      ...currentState,
+      favourite: currentState.favourite.includes(photoId)// photoId exist in []?
+      ? currentState.favourite.filter((id) => id !== photoId) // Filter it out
+      : [...currentState.favourite, photoId] // Else add it to the array
+    }));
   };
 
   // Function used to load topics on nav
@@ -32,7 +37,6 @@ const useApplicationData = () => {
       topics: topics
     }));
   };
-
 
   // Function used to close the modal
   const onClosePhotoDetailsModal = () => {
