@@ -22,19 +22,17 @@ const PhotoDetailsModal = (props) => {
           <img src={selectedPhoto.user.profile} alt="Profile picture" className="photo-details-modal__photographer-profile" />
           <div className="photo-details-modal__photographer-info">
             <div className="photo-details-modal__photographer-name">
-              <p>{selectedPhoto.user.name}</p>
+              {selectedPhoto.user.name}
             </div>
             <div className="photo-details-modal__photographer-location">
-              <p>
                 {selectedPhoto.location.city}, {selectedPhoto.location.country}
-              </p>
             </div>
           </div>
         </div>
       </div>
       {/* Similar Photos */}
       <div className="photo-details-modal__images">
-        <h2 className="photo-details-modal__header">Similar Photos</h2>
+        <h2 className="photo-details-modal__header">Similar Photos:</h2>
       </div>
       {/* Replace the photos object in PhotoList with just the similar_photos. Use Object.values to iterate over the object's properties */}
       <PhotoList photos={Object.values(selectedPhoto.similar_photos)} addFavourite={addFavourite} />
