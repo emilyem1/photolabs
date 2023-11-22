@@ -1,6 +1,4 @@
-import { useReducer } from "react";
-import photos from "mocks/photos";
-import topics from "mocks/topics";
+import { useReducer, useEffect } from "react";
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
@@ -26,12 +24,12 @@ function reducer(state, action) {
     case ACTIONS.SET_PHOTO_DATA:
       return {
         ...state,
-        photos: action.payload
+        photoData: action.payload
       }
     case ACTIONS.SET_TOPIC_DATA:
       return {
         ...state,
-        topics: action.payload
+        topicData: action.payload
       }
     case ACTIONS.SELECT_PHOTO:
       return { 
@@ -53,16 +51,26 @@ function reducer(state, action) {
 }
 
 const initialState = {
-  photos: photos,
-  topics: topics,
   selectedPhoto: null,
   showModal: false,
-  favourite: []
+  favourite: [],
+  photoData: [],
+  topicData: []
 }
 
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
+  useEffect(() => {
+    fetch("/api/photos")
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+    fetch("/api/topics")
+      .then((response) => response.json())
+      .then((data) => { dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data });
+      });
+  }, []);
+  
   // Function used to open modal
   const onPhotoSelect = (photo) => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
