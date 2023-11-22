@@ -88,7 +88,16 @@ const useApplicationData = () => {
 
   // Function used to load topics on nav
   const onLoadTopic = (topics) => {
-    dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: topics });
+    fetch(`/api/topics/photos/${topics.id}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data });
+      })
+      .catch((error) => {
+        console.error('There was a problem fetching photos by topic:', error);
+      });
   };
 
   // Function used to close the modal
