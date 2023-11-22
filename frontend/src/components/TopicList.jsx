@@ -10,7 +10,7 @@ const TopicList = (props) => {
       key={details.id}
       data={details}
       onLoadTopic={onLoadTopic}
-    />;
+    />
   });
   return (
     <div className="top-nav-bar__topic-list">

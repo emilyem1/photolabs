@@ -6,7 +6,7 @@ const TopicListItem = (props) => {
   const { data, onLoadTopic } = props;
   const handleClick = () => {
     onLoadTopic(data);
-  }
+  };
   return (
     <div className="topic-list__item">
       <span onClick={handleClick}>{data.title}</span>

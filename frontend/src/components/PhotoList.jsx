@@ -11,7 +11,7 @@ const PhotoList = (props) => {
       data={details}
       updateToFavPhotoIds={updateToFavPhotoIds}
       onPhotoSelect={onPhotoSelect}
-    />;
+    />
   });
   return <ul className="photo-list">{photo}</ul>
 };
