@@ -7,7 +7,7 @@ export const ACTIONS = {
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
   CLOSE_MODAL: 'CLOSE_MODAL'
-}
+};
 
 function reducer(state, action) {
   switch (action.type) {
@@ -32,12 +32,11 @@ function reducer(state, action) {
         topicData: action.payload
       }
     case ACTIONS.SELECT_PHOTO:
-      return { 
+      return {
         ...state,
         selectedPhoto: action.payload,
         showModal: true
       }
-    {/* Originally supposed to be DISPLAY_PHOTO_DETAILS next but SELECT_PHOTO handles this logic. So made an action to close modal: */}
     case ACTIONS.CLOSE_MODAL:
       return {
         ...state,
@@ -47,8 +46,8 @@ function reducer(state, action) {
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
       );
-  }
-}
+  };
+};
 
 const initialState = {
   selectedPhoto: null,
@@ -56,7 +55,7 @@ const initialState = {
   favourite: [],
   photoData: [],
   topicData: []
-}
+};
 
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -78,11 +77,11 @@ const useApplicationData = () => {
 
   // Function used to add favourite photo
   const updateToFavPhotoIds = (photoId) => {
-    dispatch({ 
-      type: state.favourite.includes(photoId) 
-        ? ACTIONS.FAV_PHOTO_REMOVED 
-        : ACTIONS.FAV_PHOTO_ADDED, 
-      payload: photoId 
+    dispatch({
+      type: state.favourite.includes(photoId)
+        ? ACTIONS.FAV_PHOTO_REMOVED
+        : ACTIONS.FAV_PHOTO_ADDED,
+      payload: photoId
     });
   };
 
@@ -92,6 +91,7 @@ const useApplicationData = () => {
       .then((response) => {
         return response.json();
       })
+      // Dispatch photoData instead of topicData to get the sections to work:
       .then((data) => {
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data });
       })
