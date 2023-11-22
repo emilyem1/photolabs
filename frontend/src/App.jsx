@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import HomeRoute from 'routes/HomeRoute';
 import './App.scss';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 import useApplicationData from 'hooks/useApplicationData';
 
-// Note: Rendering a single component to build components in isolation
 const App = () => {
   const {
     state,
@@ -19,7 +18,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <HomeRoute 
+      <HomeRoute
         state={state}
         topics={topicData}
         photos={photoData}
@@ -27,7 +26,7 @@ const App = () => {
         onLoadTopic={onLoadTopic}
         updateToFavPhotoIds={updateToFavPhotoIds}
       />
-      {state.showModal && <PhotoDetailsModal 
+      {state.showModal && <PhotoDetailsModal
         state={state}
         photos={photoData}
         onClosePhotoDetailsModal={onClosePhotoDetailsModal}
