@@ -64,10 +64,11 @@ const useApplicationData = () => {
     fetch("/api/photos")
       .then((response) => response.json())
       .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+      .catch((error) => { console.error('Error fetching photos:', error); });
     fetch("/api/topics")
       .then((response) => response.json())
-      .then((data) => { dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data });
-      });
+      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
+      .catch((error) => { console.error('Error fetching topics:', error); });
   }, []);
   
   // Function used to open modal
