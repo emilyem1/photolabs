@@ -1,4 +1,5 @@
 import { useReducer, useEffect } from "react";
+import { initialState } from "./initialState";
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
@@ -47,14 +48,6 @@ function reducer(state, action) {
         `Tried to reduce with unsupported action type: ${action.type}`
       );
   };
-};
-
-const initialState = {
-  selectedPhoto: null,
-  showModal: false,
-  favourite: [],
-  photoData: [],
-  topicData: []
 };
 
 const useApplicationData = () => {
