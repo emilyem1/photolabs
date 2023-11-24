@@ -6,7 +6,6 @@ const PhotoListItem = (props) => {
   const { data, updateToFavPhotoIds, onPhotoSelect } = props;
   const handleModalClick = () => {
     onPhotoSelect(data);
-    console.log('Clicked photo details:', data);
   };
 
   return (
