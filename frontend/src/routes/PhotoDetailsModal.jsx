@@ -6,7 +6,15 @@ import PhotoFavButton from "components/PhotoFavButton";
 import PhotoList from 'components/PhotoList';
 
 const PhotoDetailsModal = (props) => {
-  const { onClosePhotoDetailsModal, updateToFavPhotoIds, state, onPhotoSelect } = props;
+  const { onClosePhotoDetailsModal, updateToFavPhotoIds, state, onPhotoSelect, photos } = props;
+
+  /* initialSimilarPhoto will only work for viewing similar_photos. Will return undefined/null onClick due to the passing of the similar_photo object. */
+  const initialSimilarPhotos = Object.values(state.selectedPhoto.similar_photos);
+  // Solution is to .map just the photo.ids into new array
+  const similarPhotosId = initialSimilarPhotos.map((photo) => photo.id);
+  // Then filter photos (photoData) for the photo.ids of the similar_photos 
+  const filteredSimilarPhotos = photos.filter((photo) => similarPhotosId.includes(photo.id) );
+
   return (
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button" onClick={() => onClosePhotoDetailsModal()}>
@@ -35,7 +43,7 @@ const PhotoDetailsModal = (props) => {
         <h2 className="photo-details-modal__header">Similar Photos:</h2>
       </div>
       {/* Replace the photos object in PhotoList with just the similar_photos. Use Object.values to iterate over the object's properties */}
-      <PhotoList photos={Object.values(state.selectedPhoto.similar_photos)}updateToFavPhotoIds={updateToFavPhotoIds} onPhotoSelect={onPhotoSelect} />
+      <PhotoList photos={filteredSimilarPhotos}updateToFavPhotoIds={updateToFavPhotoIds} onPhotoSelect={onPhotoSelect} />
     </div>
   )
 };
