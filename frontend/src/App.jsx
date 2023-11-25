@@ -14,7 +14,7 @@ const App = () => {
     updateToFavPhotoIds
   } = useApplicationData();
 
-  const { topicData, photoData } = state;
+  const { topicData, photoData, favourite, selectedPhoto } = state;
 
   return (
     <div className="App">
@@ -25,13 +25,16 @@ const App = () => {
         onPhotoSelect={onPhotoSelect}
         onLoadTopic={onLoadTopic}
         updateToFavPhotoIds={updateToFavPhotoIds}
+        favourite={favourite}
       />
       {state.showModal && <PhotoDetailsModal
-        state={state}
+        data={state}
         photos={photoData}
         onClosePhotoDetailsModal={onClosePhotoDetailsModal}
         updateToFavPhotoIds={updateToFavPhotoIds}
         onPhotoSelect={onPhotoSelect}
+        favourite={favourite}
+        selectedPhoto={selectedPhoto}
       />} {/* If showModal is true, display modal */}
     </div>
   );
