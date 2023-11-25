@@ -3,11 +3,11 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoListItem = (props) => {
-  const { data, updateToFavPhotoIds, onPhotoSelect } = props;
+  const { data, updateToFavPhotoIds, onPhotoSelect, favourite } = props;
 
   return (
   <div className="photo-list__item">
-    <PhotoFavButton updateToFavPhotoIds={updateToFavPhotoIds} data={data} />
+    <PhotoFavButton updateToFavPhotoIds={updateToFavPhotoIds} data={data} favourite={favourite} />
     <img src={data.urls.regular} alt="Photo" className="photo-list__image" onClick={() => onPhotoSelect(data)} />
 
     <div className="photo-list__user-details">
